@@ -1,0 +1,53 @@
+version: "3"
+
+networks:
+  op-grafana:
+    driver: bridge
+
+services:
+  op-grafana:
+    image: ${GRAFANA_IMAGE}
+    environment:
+      OPSTORAGE_BASEURL: ${OPSTORAGE_BASEURL}
+      OPSTORAGE_APIKEY: ${OPSTORAGE_APIKEY}
+      GF_ANALYTICS_REPORTING_ENABLED: false
+      GF_ANALYTICS_CHECK_FOR_UPDATES: false
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: false
+      GF_ANALYTICS_FEEDBACK_LINKS_ENABLED: false
+      GF_AUTH_PROXY_ENABLED: true
+      GF_AUTH_PROXY_HEADER_NAME: X-WEBAUTH-USER
+      GF_AUTH_PROXY_HEADER_PROPERTY: username
+      GF_AUTH_PROXY_AUTO_SIGN_UP: true
+      GF_AUTH_PROXY_SYNC_TTL: 60
+      GF_AUTH_PROXY_HEADERS: Role:X-WEBAUTH-ROLE
+      GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
+      GF_SECURITY_ALLOW_EMBEDDING: true
+      GF_SNAPSHOTS_ENABLED: false
+      GF_USERS_DEFAULT_THEME: light
+      GF_PROFILE_ENABLED: false
+      GF_LOG_LEVEL: debug
+    restart: on-failure
+    networks:
+      - op-grafana
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "${GRAFANA_PORT}:3000"
+  nginx:
+    image: nginx:1.24.0-alpine
+    entrypoint: [ "/bin/sh", "/entrypoint.sh" ]
+    environment:
+      USER_ROLE: ${USER_ROLE}
+      USER_SESSION: ${USER_SESSION}
+      REQUEST_CONTEXT: ${REQUEST_CONTEXT}
+      GRAFANA_PORT: ${GRAFANA_PORT}
+    restart: on-failure
+    networks:
+      - op-grafana
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx/entrypoint.sh:/entrypoint.sh
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/templates/default.conf:ro
