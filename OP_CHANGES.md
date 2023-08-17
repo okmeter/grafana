@@ -20,6 +20,7 @@ git clone --depth=1 --branch v9.5.2 https://github.com/grafana/grafana.git
 4. files that were modified:
 
 - removed `/vendor` from `.gitignore` (to use it in Dockerfile)
+- removed `/.github` to disable github actions and dependencies check
 - added `/vendor` to `.gitattributes` (hide diffs in gitlab mrs)
 
 ### <a name="july2023Code"></a> Code
