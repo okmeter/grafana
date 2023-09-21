@@ -457,14 +457,16 @@ func (s *ServiceImpl) buildAlertNavLinks(c *contextmodel.ReqContext, hasEditPerm
 	hasAccess := ac.HasAccess(s.accessControl, c)
 	var alertChildNavs []*navtree.NavLink
 
-	if !s.features.IsEnabled(featuremgmt.FlagTopnav) {
-		alertChildNavs = append(alertChildNavs, &navtree.NavLink{
-			Text: "Home",
-			Id:   "alert-home",
-			Url:  s.cfg.AppSubURL + "/alerting/home",
-			Icon: "home",
-		})
-	}
+	// OP_CHANGES.md: disable alerting home navigation
+	// original:
+	//if !s.features.IsEnabled(featuremgmt.FlagTopnav) {
+	//	alertChildNavs = append(alertChildNavs, &navtree.NavLink{
+	//		Text: "Home",
+	//		Id:   "alert-home",
+	//		Url:  s.cfg.AppSubURL + "/alerting/home",
+	//		Icon: "home",
+	//	})
+	//}
 
 	if hasAccess(ac.ReqViewer, ac.EvalAny(ac.EvalPermission(ac.ActionAlertingRuleRead), ac.EvalPermission(ac.ActionAlertingRuleExternalRead))) {
 		alertChildNavs = append(alertChildNavs, &navtree.NavLink{
@@ -472,25 +474,31 @@ func (s *ServiceImpl) buildAlertNavLinks(c *contextmodel.ReqContext, hasEditPerm
 		})
 	}
 
-	if hasAccess(ac.ReqOrgAdminOrEditor, ac.EvalAny(ac.EvalPermission(ac.ActionAlertingNotificationsRead), ac.EvalPermission(ac.ActionAlertingNotificationsExternalRead))) {
-		alertChildNavs = append(alertChildNavs, &navtree.NavLink{
-			Text: "Contact points", SubTitle: "Choose how to notify your  contact points when an alert instance fires", Id: "receivers", Url: s.cfg.AppSubURL + "/alerting/notifications",
-			Icon: "comment-alt-share",
-		})
-		alertChildNavs = append(alertChildNavs, &navtree.NavLink{Text: "Notification policies", SubTitle: "Determine how alerts are routed to contact points", Id: "am-routes", Url: s.cfg.AppSubURL + "/alerting/routes", Icon: "sitemap"})
-	}
+	// OP_CHANGES.md: disable notification policies endpoint navigation
+	// original:
+	//if hasAccess(ac.ReqOrgAdminOrEditor, ac.EvalAny(ac.EvalPermission(ac.ActionAlertingNotificationsRead), ac.EvalPermission(ac.ActionAlertingNotificationsExternalRead))) {
+	//	alertChildNavs = append(alertChildNavs, &navtree.NavLink{
+	//		Text: "Contact points", SubTitle: "Choose how to notify your  contact points when an alert instance fires", Id: "receivers", Url: s.cfg.AppSubURL + "/alerting/notifications",
+	//		Icon: "comment-alt-share",
+	//	})
+	//	alertChildNavs = append(alertChildNavs, &navtree.NavLink{Text: "Notification policies", SubTitle: "Determine how alerts are routed to contact points", Id: "am-routes", Url: s.cfg.AppSubURL + "/alerting/routes", Icon: "sitemap"})
+	//}
 
 	if hasAccess(ac.ReqViewer, ac.EvalAny(ac.EvalPermission(ac.ActionAlertingInstanceRead), ac.EvalPermission(ac.ActionAlertingInstancesExternalRead))) {
 		alertChildNavs = append(alertChildNavs, &navtree.NavLink{Text: "Silences", SubTitle: "Stop notifications from one or more alerting rules", Id: "silences", Url: s.cfg.AppSubURL + "/alerting/silences", Icon: "bell-slash"})
-		alertChildNavs = append(alertChildNavs, &navtree.NavLink{Text: "Alert groups", SubTitle: "See grouped alerts from an Alertmanager instance", Id: "groups", Url: s.cfg.AppSubURL + "/alerting/groups", Icon: "layer-group"})
+		// OP_CHANGES.md: disable alerting groups endpoint navigation
+		// original:
+		//alertChildNavs = append(alertChildNavs, &navtree.NavLink{Text: "Alert groups", SubTitle: "See grouped alerts from an Alertmanager instance", Id: "groups", Url: s.cfg.AppSubURL + "/alerting/groups", Icon: "layer-group"})
 	}
 
-	if c.OrgRole == org.RoleAdmin {
-		alertChildNavs = append(alertChildNavs, &navtree.NavLink{
-			Text: "Admin", Id: "alerting-admin", Url: s.cfg.AppSubURL + "/alerting/admin",
-			Icon: "cog",
-		})
-	}
+	// OP_CHANGES.md: disable admin alerting endpoint navigation
+	// original:
+	//if c.OrgRole == org.RoleAdmin {
+	//	alertChildNavs = append(alertChildNavs, &navtree.NavLink{
+	//		Text: "Admin", Id: "alerting-admin", Url: s.cfg.AppSubURL + "/alerting/admin",
+	//		Icon: "cog",
+	//	})
+	//}
 
 	fallbackHasEditPerm := func(*contextmodel.ReqContext) bool { return hasEditPerm }
 

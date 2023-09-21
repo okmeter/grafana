@@ -25,3 +25,7 @@ func GetRequestContextData(ctx context.Context) string {
 	}
 	return ""
 }
+
+func SetRequestContextData(ctx context.Context, requestContextData string) context.Context {
+	return context.WithValue(ctx, requestContextDataCtxKey, requestContextData)
+}

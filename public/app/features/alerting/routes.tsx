@@ -26,83 +26,85 @@ const legacyRoutes: RouteDescriptor[] = [
       () => import(/* webpackChunkName: "AlertRuleListIndex" */ 'app/features/alerting/AlertRuleList')
     ),
   },
-  {
-    path: '/alerting/ng/list',
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "AlertRuleList" */ 'app/features/alerting/AlertRuleList')
-    ),
-  },
-  {
-    path: '/alerting/notifications',
-    roles: config.unifiedAlertingEnabled ? () => ['Editor', 'Admin'] : undefined,
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
-    ),
-  },
-  {
-    path: '/alerting/notifications/templates/new',
-    roles: () => ['Editor', 'Admin'],
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
-    ),
-  },
-  {
-    path: '/alerting/notifications/templates/:id/edit',
-    roles: () => ['Editor', 'Admin'],
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
-    ),
-  },
-  {
-    path: '/alerting/notifications/receivers/new',
-    roles: () => ['Editor', 'Admin'],
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
-    ),
-  },
-  {
-    path: '/alerting/notifications/receivers/:id/edit',
-    roles: () => ['Editor', 'Admin'],
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
-    ),
-  },
-  {
-    path: '/alerting/notifications/global-config',
-    roles: () => ['Admin', 'Editor'],
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
-    ),
-  },
-  {
-    path: '/alerting/notification/new',
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NewNotificationChannel" */ 'app/features/alerting/NewNotificationChannelPage')
-    ),
-  },
-  {
-    path: '/alerting/notification/:id/edit',
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "EditNotificationChannel"*/ 'app/features/alerting/EditNotificationChannelPage')
-    ),
-  },
+  // OP_CHANGES.md: disable alerting routes
+  // {
+  //   path: '/alerting/ng/list',
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "AlertRuleList" */ 'app/features/alerting/AlertRuleList')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications',
+  //   roles: config.unifiedAlertingEnabled ? () => ['Editor', 'Admin'] : undefined,
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications/templates/new',
+  //   roles: () => ['Editor', 'Admin'],
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications/templates/:id/edit',
+  //   roles: () => ['Editor', 'Admin'],
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications/receivers/new',
+  //   roles: () => ['Editor', 'Admin'],
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications/receivers/:id/edit',
+  //   roles: () => ['Editor', 'Admin'],
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications/global-config',
+  //   roles: () => ['Admin', 'Editor'],
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/NotificationsListPage')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notification/new',
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NewNotificationChannel" */ 'app/features/alerting/NewNotificationChannelPage')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notification/:id/edit',
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "EditNotificationChannel"*/ 'app/features/alerting/EditNotificationChannelPage')
+  //   ),
+  // },
 ];
 
 const unifiedRoutes: RouteDescriptor[] = [
   ...commonRoutes,
-  config.featureToggles.topnav
-    ? {
-        path: '/alerting',
-        component: SafeDynamicImport(
-          () => import(/* webpackChunkName: "AlertingHome" */ 'app/features/alerting/unified/Home')
-        ),
-      }
-    : {
-        path: '/alerting/home',
-        component: SafeDynamicImport(
-          () => import(/* webpackChunkName: "AlertingHome" */ 'app/features/alerting/unified/Home')
-        ),
-      },
+  // OP_CHANGES.md: disable alerting routes
+  // config.featureToggles.topnav
+  //   ? {
+  //       path: '/alerting',
+  //       component: SafeDynamicImport(
+  //         () => import(/* webpackChunkName: "AlertingHome" */ 'app/features/alerting/unified/Home')
+  //       ),
+  //     }
+  //   : {
+  //       path: '/alerting/home',
+  //       component: SafeDynamicImport(
+  //         () => import(/* webpackChunkName: "AlertingHome" */ 'app/features/alerting/unified/Home')
+  //       ),
+  //     },
   {
     path: '/alerting/list',
     roles: evaluateAccess(
@@ -113,36 +115,37 @@ const unifiedRoutes: RouteDescriptor[] = [
       () => import(/* webpackChunkName: "AlertRuleListIndex" */ 'app/features/alerting/unified/RuleList')
     ),
   },
-  {
-    path: '/alerting/routes',
-    roles: evaluateAccess(
-      [AccessControlAction.AlertingNotificationsRead, AccessControlAction.AlertingNotificationsExternalRead],
-      [OrgRole.Editor, OrgRole.Admin]
-    ),
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "AlertAmRoutes" */ 'app/features/alerting/unified/NotificationPolicies')
-    ),
-  },
-  {
-    path: '/alerting/routes/mute-timing/new',
-    roles: evaluateAccess(
-      [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
-      ['Editor', 'Admin']
-    ),
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "MuteTimings" */ 'app/features/alerting/unified/MuteTimings')
-    ),
-  },
-  {
-    path: '/alerting/routes/mute-timing/edit',
-    roles: evaluateAccess(
-      [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
-      ['Editor', 'Admin']
-    ),
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "MuteTimings" */ 'app/features/alerting/unified/MuteTimings')
-    ),
-  },
+  // OP_CHANGES.md: disable alerting routes
+  // {
+  //   path: '/alerting/routes',
+  //   roles: evaluateAccess(
+  //     [AccessControlAction.AlertingNotificationsRead, AccessControlAction.AlertingNotificationsExternalRead],
+  //     [OrgRole.Editor, OrgRole.Admin]
+  //   ),
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "AlertAmRoutes" */ 'app/features/alerting/unified/NotificationPolicies')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/routes/mute-timing/new',
+  //   roles: evaluateAccess(
+  //     [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
+  //     ['Editor', 'Admin']
+  //   ),
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "MuteTimings" */ 'app/features/alerting/unified/MuteTimings')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/routes/mute-timing/edit',
+  //   roles: evaluateAccess(
+  //     [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
+  //     ['Editor', 'Admin']
+  //   ),
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "MuteTimings" */ 'app/features/alerting/unified/MuteTimings')
+  //   ),
+  // },
   {
     path: '/alerting/silences',
     roles: evaluateAccess(
@@ -173,66 +176,67 @@ const unifiedRoutes: RouteDescriptor[] = [
       () => import(/* webpackChunkName: "AlertSilences" */ 'app/features/alerting/unified/Silences')
     ),
   },
-  {
-    path: '/alerting/notifications',
-    roles: evaluateAccess(
-      [AccessControlAction.AlertingNotificationsRead, AccessControlAction.AlertingNotificationsExternalRead],
-      ['Editor', 'Admin']
-    ),
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
-    ),
-  },
-  {
-    path: '/alerting/notifications/:type/new',
-    roles: evaluateAccess(
-      [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
-      ['Editor', 'Admin']
-    ),
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
-    ),
-  },
-  {
-    path: '/alerting/notifications/:type/:id/edit',
-    roles: evaluateAccess(
-      [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
-      ['Editor', 'Admin']
-    ),
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
-    ),
-  },
-  {
-    path: '/alerting/notifications/:type/:id/duplicate',
-    roles: evaluateAccess(
-      [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
-      ['Editor', 'Admin']
-    ),
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
-    ),
-  },
-  {
-    path: '/alerting/notifications/:type',
-    roles: evaluateAccess(
-      [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
-      ['Editor', 'Admin']
-    ),
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
-    ),
-  },
-  {
-    path: '/alerting/groups/',
-    roles: evaluateAccess(
-      [AccessControlAction.AlertingInstanceRead, AccessControlAction.AlertingInstancesExternalRead],
-      [OrgRole.Viewer, OrgRole.Editor, OrgRole.Admin]
-    ),
-    component: SafeDynamicImport(
-      () => import(/* webpackChunkName: "AlertGroups" */ 'app/features/alerting/unified/AlertGroups')
-    ),
-  },
+  // OP_CHANGES.md: disable alerting routes
+  // {
+  //   path: '/alerting/notifications',
+  //   roles: evaluateAccess(
+  //     [AccessControlAction.AlertingNotificationsRead, AccessControlAction.AlertingNotificationsExternalRead],
+  //     ['Editor', 'Admin']
+  //   ),
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications/:type/new',
+  //   roles: evaluateAccess(
+  //     [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
+  //     ['Editor', 'Admin']
+  //   ),
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications/:type/:id/edit',
+  //   roles: evaluateAccess(
+  //     [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
+  //     ['Editor', 'Admin']
+  //   ),
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications/:type/:id/duplicate',
+  //   roles: evaluateAccess(
+  //     [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
+  //     ['Editor', 'Admin']
+  //   ),
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/notifications/:type',
+  //   roles: evaluateAccess(
+  //     [AccessControlAction.AlertingNotificationsWrite, AccessControlAction.AlertingNotificationsExternalWrite],
+  //     ['Editor', 'Admin']
+  //   ),
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "NotificationsListPage" */ 'app/features/alerting/unified/Receivers')
+  //   ),
+  // },
+  // {
+  //   path: '/alerting/groups/',
+  //   roles: evaluateAccess(
+  //     [AccessControlAction.AlertingInstanceRead, AccessControlAction.AlertingInstancesExternalRead],
+  //     [OrgRole.Viewer, OrgRole.Editor, OrgRole.Admin]
+  //   ),
+  //   component: SafeDynamicImport(
+  //     () => import(/* webpackChunkName: "AlertGroups" */ 'app/features/alerting/unified/AlertGroups')
+  //   ),
+  // },
   {
     path: '/alerting/new',
     pageClass: 'page-alerting',

@@ -84,6 +84,10 @@ func (s *datasourceStorage) GetDatasource(ctx context.Context, query *GetDataSou
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
+
 	params := url.Values{}
 	if query.ID > 0 {
 		params.Set("id", strconv.FormatInt(query.ID, 10))
@@ -127,6 +131,10 @@ func (s *datasourceStorage) GetDefaultDatasource(ctx context.Context, query *Get
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
+
 	params := url.Values{}
 	params.Set("org_id", strconv.FormatInt(query.OrgID, 10))
 
@@ -157,6 +165,10 @@ func (s *datasourceStorage) GetAllDatasources(ctx context.Context) ([]*Datasourc
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
+
 	data, err := s.client.Get(ctx, "datasource/getAllDatasources",
 		interceptor.WithRequestHeader("X-REQUEST-CONTEXT", requestContextData),
 		interceptor.WithRequestCookie(&http.Cookie{Name: "user_session", Value: userSessionData}),
@@ -184,6 +196,10 @@ func (s *datasourceStorage) GetDatasources(ctx context.Context, query *GetDataso
 		requestContextData = middleware.GetRequestContextData(ctx)
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
+
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
 
 	params := url.Values{}
 	if query.Limit > 0 {
@@ -220,6 +236,10 @@ func (s *datasourceStorage) GetDatasourcesByType(ctx context.Context, query *Get
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
+
 	params := url.Values{}
 	if query.Type != "" {
 		params.Set("type", query.Type)
@@ -254,6 +274,10 @@ func (s *datasourceStorage) Count(ctx context.Context, query *CountDatasourceQue
 		requestContextData = middleware.GetRequestContextData(ctx)
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
+
+	if userSessionData == "" {
+		return 0, ErrEmptyUserSession
+	}
 
 	params := url.Values{}
 	if query.UserID != 0 {

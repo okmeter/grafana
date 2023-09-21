@@ -55,7 +55,9 @@ export const getDefaultFormValues = (): RuleFormValues => {
       { key: Annotation.runbookURL, value: '' },
     ],
     dataSourceName: null,
-    type: canCreateGrafanaRules ? RuleFormType.grafana : canCreateCloudRules ? RuleFormType.cloudAlerting : undefined, // viewers can't create prom alerts
+    // OP_CHANGES.md remove 'canCreateGrafanaRules ? RuleFormType.grafana
+    // original: type: canCreateGrafanaRules ? RuleFormType.grafana : canCreateCloudRules ? RuleFormType.cloudAlerting : undefined // viewers can't create prom alerts
+    type: canCreateCloudRules ? RuleFormType.cloudAlerting : undefined, // viewers can't create prom alerts
     group: '',
 
     // grafana
@@ -422,7 +424,9 @@ export const panelToRuleFormValues = async (
   const { folderId, folderTitle } = dashboard.meta;
 
   const formValues = {
-    type: RuleFormType.grafana,
+    // OP_CHANGES.md set RuleFormType.cloudAlerting
+    // original: type: RuleFormType.grafana,
+    type: RuleFormType.cloudAlerting,
     folder:
       folderId && folderTitle
         ? {

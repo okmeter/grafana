@@ -276,11 +276,13 @@ class UnConnectedExploreToolbar extends PureComponent<Props> {
     return (
       <div ref={topOfViewRef}>
         {refreshInterval && <SetInterval func={this.onRunQuery} interval={refreshInterval} loading={loading} />}
-        {isTopnav && (
-          <div ref={topOfViewRef}>
-            <AppChromeUpdate actions={[shareButton, <div style={{ flex: 1 }} key="spacer" />]} />
-          </div>
-        )}
+        {/*OP_CHANGES.md: hide <AppChromeUpdate actions={[shareButton}}*/}
+        {/*original:*/}
+        {/*{isTopnav (*/}
+        {/*  <div ref={topOfViewRef}>*/}
+        {/*    <AppChromeUpdate actions={[shareButton, <div style={{ flex: 1 }} key="spacer" />]} />*/}
+        {/*  </div>*/}
+        {/*)}*/}
         <PageToolbar
           aria-label="Explore toolbar"
           title={exploreId === ExploreId.left && !isTopnav ? 'Explore' : undefined}

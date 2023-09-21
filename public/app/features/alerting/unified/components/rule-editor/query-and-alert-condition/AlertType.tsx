@@ -92,12 +92,17 @@ function getAvailableRuleTypes() {
     contextSrv.hasEditPermissionInFolders
   );
   const canCreateCloudRules = contextSrv.hasAccess(AccessControlAction.AlertingRuleExternalWrite, contextSrv.isEditor);
-  const defaultRuleType = canCreateGrafanaRules ? RuleFormType.grafana : RuleFormType.cloudAlerting;
+  // OP_CHANGES.md: set RuleFormType.cloudAlerting as defaultRuleType
+  // original: const defaultRuleType = canCreateGrafanaRules ? RuleFormType.grafana : RuleFormType.cloudAlerting;
+  const defaultRuleType = RuleFormType.cloudAlerting;
 
   const enabledRuleTypes: RuleFormType[] = [];
-  if (canCreateGrafanaRules) {
-    enabledRuleTypes.push(RuleFormType.grafana);
-  }
+  // OP_CHANGES.md: disable RuleFormType.grafana
+  // original:
+  //if (canCreateGrafanaRules) {
+  //  enabledRuleTypes.push(RuleFormType.grafana);
+  //}
+
   if (canCreateCloudRules) {
     enabledRuleTypes.push(RuleFormType.cloudAlerting, RuleFormType.cloudRecording);
   }

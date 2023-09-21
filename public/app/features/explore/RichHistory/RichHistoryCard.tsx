@@ -306,9 +306,11 @@ export function RichHistoryCard(props: Props) {
         title={query.comment?.length > 0 ? 'Edit comment' : 'Add comment'}
       />
       <IconButton name="copy" onClick={onCopyQuery} title="Copy query to clipboard" />
-      {value?.dsInstance && (
-        <IconButton name="share-alt" onClick={onCreateShortLink} title="Copy shortened link to clipboard" />
-      )}
+      {/*OP_CHANGES.md: hide onCreateShortLink*/}
+      {/*original:*/}
+      {/*{value?.dsInstance (*/}
+      {/*  <IconButton name="share-alt" onClick={onCreateShortLink} title="Copy shortened link to clipboard" />*/}
+      {/*)}*/}
       <IconButton name="trash-alt" title={'Delete query'} onClick={onDeleteQuery} />
       <IconButton
         name={query.starred ? 'favorite' : 'star'}

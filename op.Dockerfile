@@ -51,7 +51,6 @@ COPY pkg pkg
 COPY op-pkg op-pkg
 COPY scripts scripts
 COPY conf conf
-COPY .github .github
 
 ENV COMMIT_SHA=${COMMIT_SHA}
 ENV BUILD_BRANCH=${BUILD_BRANCH}

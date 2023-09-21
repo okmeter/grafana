@@ -34,9 +34,11 @@ const RuleTypePicker = ({ selected, onChange, enabledTypes }: RuleTypePickerProp
   return (
     <>
       <Stack direction="row" gap={2}>
-        {enabledTypes.includes(RuleFormType.grafana) && (
-          <GrafanaManagedRuleType selected={selected === RuleFormType.grafana} onClick={onChange} />
-        )}
+        {/*OP_CHANGES.md: disable selected GrafanaManagedRuleType*/}
+        {/*original:*/}
+        {/*{enabledTypes.includes(RuleFormType.grafana) && (*/}
+        {/*  <GrafanaManagedRuleType selected={selected === RuleFormType.grafana} onClick={onChange} />*/}
+        {/*)}*/}
         {enabledTypes.includes(RuleFormType.cloudAlerting) && (
           <MimirFlavoredType
             selected={selected === RuleFormType.cloudAlerting}
@@ -52,12 +54,14 @@ const RuleTypePicker = ({ selected, onChange, enabledTypes }: RuleTypePickerProp
           />
         )}
       </Stack>
-      {enabledTypes.includes(RuleFormType.grafana) && (
-        <small className={styles.meta}>
-          Select &ldquo;Grafana managed&rdquo; unless you have a Mimir, Loki or Cortex data source with the Ruler API
-          enabled.
-        </small>
-      )}
+      {/*OP_CHANGES.md: disable Select helper*/}
+      {/*original:*/}
+      {/*{enabledTypes.includes(RuleFormType.grafana) && (*/}
+      {/*  <small className={styles.meta}>*/}
+      {/*    Select &ldquo;Grafana managed&rdquo; unless you have a Mimir, Loki or Cortex data source with the Ruler API*/}
+      {/*    enabled.*/}
+      {/*  </small>*/}
+      {/*)}*/}
     </>
   );
 };

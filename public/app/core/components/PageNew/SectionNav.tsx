@@ -6,8 +6,7 @@ import { NavModel, GrafanaTheme2 } from '@grafana/data';
 import { useStyles2, CustomScrollbar, useTheme2 } from '@grafana/ui';
 
 import { SectionNavItem } from './SectionNavItem';
-// OP_CHANGES.md: disable SectionNavToggle
-// original: import { SectionNavToggle } from './SectionNavToggle';
+import { SectionNavToggle } from './SectionNavToggle';
 
 export interface Props {
   model: NavModel;
@@ -15,9 +14,7 @@ export interface Props {
 
 export function SectionNav({ model }: Props) {
   const styles = useStyles2(getStyles);
-  // OP_CHANGES.md: disable SectionNavToggle
-  // original: const { isExpanded, onToggleSectionNav } = useSectionNavState();
-  const { isExpanded } = useSectionNavState();
+  const { isExpanded, onToggleSectionNav } = useSectionNavState();
 
   if (!Boolean(model.main?.children?.length)) {
     return null;
@@ -36,9 +33,7 @@ export function SectionNav({ model }: Props) {
           </div>
         </CustomScrollbar>
       </nav>
-      {/*OP_CHANGES.md: disable SectionNavToggle*/}
-      {/*original:*/}
-      {/*<SectionNavToggle isExpanded={isExpanded} onClick={onToggleSectionNav} />*/}
+      <SectionNavToggle isExpanded={isExpanded} onClick={onToggleSectionNav} />
     </div>
   );
 }

@@ -20,3 +20,8 @@ op-compose:
 	OPSTORAGE_BASEURL=${OPSTORAGE_BASEURL} \
 	OPSTORAGE_APIKEY=${OPSTORAGE_APIKEY} \
 	docker compose -f op-develop/docker-compose.yml up
+
+## update grafana version
+
+op-list-changes:
+	grep -rnw '.' -e 'OP_CHANGES.md'

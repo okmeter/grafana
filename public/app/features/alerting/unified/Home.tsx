@@ -144,20 +144,22 @@ function WelcomeHeader({ className }: { className?: string }) {
         href="/alerting/list"
         hrefText="Manage alert rules"
       />
-      <div className={styles.separator} />
-      <WelcomeCTABox
-        title="Contact points"
-        description="Configure who receives notifications and how they are sent"
-        href="/alerting/notifications"
-        hrefText="Manage contact points"
-      />
-      <div className={styles.separator} />
-      <WelcomeCTABox
-        title="Notification policies"
-        description="Configure how firing alert instances are routed to contact points"
-        href="/alerting/routes"
-        hrefText="Manage notification policies"
-      />
+      {/*OP_CHANGES.md: removed two WelcomeCTABoxes*/}
+      {/*original:*/}
+      {/*<div className={styles.separator} />*/}
+      {/*<WelcomeCTABox*/}
+      {/*  title="Contact points"*/}
+      {/*  description="Configure who receives notifications and how they are sent"*/}
+      {/*  href="/alerting/notifications"*/}
+      {/*  hrefText="Manage contact points"*/}
+      {/*/>*/}
+      {/*<div className={styles.separator} />*/}
+      {/*<WelcomeCTABox*/}
+      {/*  title="Notification policies"*/}
+      {/*  description="Configure how firing alert instances are routed to contact points"*/}
+      {/*  href="/alerting/routes"*/}
+      {/*  hrefText="Manage notification policies"*/}
+      {/*/>*/}
     </ContentBox>
   );
 }

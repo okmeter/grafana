@@ -181,37 +181,38 @@ export const RuleDetailsActionButtons = ({ rule, rulesSource, isViewMode }: Prop
   if (isViewMode && rulerRule) {
     const sourceName = getRulesSourceName(rulesSource);
     const identifier = ruleId.fromRulerRule(sourceName, namespace.name, group.name, rulerRule);
-
-    if (isEditable && !isFederated) {
-      rightButtons.push(
-        <ClipboardButton
-          key="copy"
-          icon="copy"
-          onClipboardError={(copiedText) => {
-            notifyApp.error('Error while copying URL', copiedText);
-          }}
-          size="sm"
-          getText={buildShareUrl}
-        >
-          Copy link to rule
-        </ClipboardButton>
-      );
-
-      if (!isProvisioned) {
-        const editURL = urlUtil.renderUrl(
-          `${config.appSubUrl}/alerting/${encodeURIComponent(ruleId.stringifyIdentifier(identifier))}/edit`,
-          {
-            returnTo,
-          }
-        );
-
-        rightButtons.push(
-          <LinkButton size="sm" key="edit" variant="secondary" icon="pen" href={editURL}>
-            Edit
-          </LinkButton>
-        );
-      }
-    }
+    // OP_CHANGES.md: removed copy to clipboard button
+    // original:
+    // if (isEditable && !isFederated) {
+    //   rightButtons.push(
+    //     <ClipboardButton
+    //       key="copy"
+    //       icon="copy"
+    //       onClipboardError={(copiedText) => {
+    //         notifyApp.error('Error while copying URL', copiedText);
+    //       }}
+    //       size="sm"
+    //       getText={buildShareUrl}
+    //     >
+    //       Copy link to rule
+    //     </ClipboardButton>
+    //   );
+    //
+    //   if (!isProvisioned) {
+    //     const editURL = urlUtil.renderUrl(
+    //       `${config.appSubUrl}/alerting/${encodeURIComponent(ruleId.stringifyIdentifier(identifier))}/edit`,
+    //       {
+    //         returnTo,
+    //       }
+    //     );
+    //
+    //     rightButtons.push(
+    //       <LinkButton size="sm" key="edit" variant="secondary" icon="pen" href={editURL}>
+    //         Edit
+    //       </LinkButton>
+    //     );
+    //   }
+    // }
 
     if (hasCreateRulePermission && !isFederated) {
       rightButtons.push(

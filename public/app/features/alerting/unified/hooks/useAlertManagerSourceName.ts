@@ -63,5 +63,10 @@ export function useAlertManagerSourceName(
     return [GRAFANA_RULES_SOURCE_NAME, update];
   }
 
+  // OP_CHANGES.md: use first available alert manager name
+  if (availableAlertManagers.length > 0) {
+    return [availableAlertManagers[0].name, update];
+  }
+
   return [undefined, update];
 }

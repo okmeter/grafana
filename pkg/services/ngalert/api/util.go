@@ -2,6 +2,7 @@ package api
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -23,6 +24,10 @@ import (
 	ngmodels "github.com/grafana/grafana/pkg/services/ngalert/models"
 	"github.com/grafana/grafana/pkg/services/org"
 	"github.com/grafana/grafana/pkg/web"
+)
+
+import (
+	"github.com/grafana/grafana/op-pkg/sdk/middleware"
 )
 
 var searchRegex = regexp.MustCompile(`\{(\w+)\}`)
@@ -75,11 +80,23 @@ func (w *safeMacaronWrapper) CloseNotify() <-chan bool {
 // This is needed to bypass the plugin authorization, which still relies on the legacy roles.
 // This elevation can be considered safe because all upstream calls are protected by the RBAC on web request router level.
 func (p *AlertingProxy) createProxyContext(ctx *contextmodel.ReqContext, request *http.Request, response *response.NormalResponse) *contextmodel.ReqContext {
+	// OP_CHANGES.md: use op middlewares in alerting service
+	var (
+		requestContextData = middleware.GetRequestContextData(ctx.Req.Context())
+		userSessionData    = middleware.GetUserSessionData(ctx.Req.Context())
+	)
+
 	cpy := *ctx
 	cpyMCtx := *cpy.Context
 	cpyMCtx.Resp = web.NewResponseWriter(ctx.Req.Method, &safeMacaronWrapper{response})
 	cpy.Context = &cpyMCtx
-	cpy.Req = request
+
+	// OP_CHANGES.md: use op middlewares in alerting service
+	// original: cpy.Req = request
+	opCtx := context.Background()
+	opCtx = middleware.SetRequestContextData(opCtx, requestContextData)
+	opCtx = middleware.SetUserSessionData(opCtx, userSessionData)
+	cpy.Req = request.WithContext(opCtx)
 
 	// If RBAC is enabled, the actions are checked upstream and if the user gets here then it is allowed to do an action against a datasource.
 	// Some data sources require legacy Editor role in order to perform mutating operations. In this case, we elevate permissions for the context that we

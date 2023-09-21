@@ -101,7 +101,9 @@ export const AlertRuleForm = ({ existing, prefill }: Props) => {
       queries: getDefaultQueries(),
       condition: 'C',
       ...(queryParams['defaults'] ? JSON.parse(queryParams['defaults'] as string) : {}),
-      type: RuleFormType.grafana,
+      // OP_CHANGES.md: set type: RuleFormType.cloudAlerting
+      // original: type: RuleFormType.grafana,
+      type: RuleFormType.cloudAlerting,
       evaluateEvery: evaluateEvery,
     };
   }, [existing, prefill, queryParams, evaluateEvery]);

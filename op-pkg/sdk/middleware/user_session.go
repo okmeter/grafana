@@ -29,3 +29,7 @@ func GetUserSessionData(ctx context.Context) string {
 	}
 	return ""
 }
+
+func SetUserSessionData(ctx context.Context, userSessionData string) context.Context {
+	return context.WithValue(ctx, userSessionDataCtxKey, userSessionData)
+}

@@ -85,23 +85,24 @@ export const RuleActionsButtons = ({ rule, rulesSource }: Props) => {
       const editURL = createUrl(`/alerting/${encodeURIComponent(ruleId.stringifyIdentifier(identifier))}/edit`, {
         returnTo,
       });
-
-      if (isViewMode) {
-        buttons.push(
-          <ClipboardButton
-            key="copy"
-            icon="copy"
-            onClipboardError={(copiedText) => {
-              notifyApp.error('Error while copying URL', copiedText);
-            }}
-            className={style.button}
-            size="sm"
-            getText={buildShareUrl}
-          >
-            Copy link to rule
-          </ClipboardButton>
-        );
-      }
+      // OP_CHANGES.md: removed copy to clipboard button
+      // original:
+      // if (isViewMode) {
+      //   buttons.push(
+      //     <ClipboardButton
+      //       key="copy"
+      //       icon="copy"
+      //       onClipboardError={(copiedText) => {
+      //         notifyApp.error('Error while copying URL', copiedText);
+      //       }}
+      //       className={style.button}
+      //       size="sm"
+      //       getText={buildShareUrl}
+      //     >
+      //       Copy link to rule
+      //     </ClipboardButton>
+      //   );
+      // }
 
       buttons.push(
         <Tooltip placement="top" content={'Edit'}>

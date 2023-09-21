@@ -111,19 +111,21 @@ const RuleList = withErrorBoundary(
                 <RuleStats namespaces={filteredNamespaces} includeTotal />
               </div>
               <Stack direction="row" gap={0.5}>
-                {canReadProvisioning && (
-                  <LinkButton
-                    href={createUrl('/api/v1/provisioning/alert-rules/export', {
-                      download: 'true',
-                      format: 'yaml',
-                    })}
-                    icon="download-alt"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Export
-                  </LinkButton>
-                )}
+                {/*OP_CHANGES.md disable export button*/}
+                {/*original: */}
+                {/*{canReadProvisioning && (*/}
+                {/*  <LinkButton*/}
+                {/*    href={createUrl('/api/v1/provisioning/alert-rules/export', {*/}
+                {/*      download: 'true',*/}
+                {/*      format: 'yaml',*/}
+                {/*    })}*/}
+                {/*    icon="download-alt"*/}
+                {/*    target="_blank"*/}
+                {/*    rel="noopener"*/}
+                {/*  >*/}
+                {/*    Export*/}
+                {/*  </LinkButton>*/}
+                {/*)}*/}
                 {(canCreateGrafanaRules || canCreateCloudRules) && (
                   <LinkButton
                     href={urlUtil.renderUrl('alerting/new', { returnTo: location.pathname + location.search })}

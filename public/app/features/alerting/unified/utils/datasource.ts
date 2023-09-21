@@ -74,9 +74,11 @@ export function getAlertManagerDataSourcesByPermission(
     notification: notificationsPermissions.read,
   };
 
-  if (contextSrv.hasPermission(permissions[permission].grafana)) {
-    availableDataSources.push(grafanaAlertManagerDataSource);
-  }
+  // OP_CHANGES.md: remove grafanaAlertManagerDataSource from available datasources
+  // original:
+  //if (contextSrv.hasPermission(permissions[permission].grafana)) {
+  //  availableDataSources.push(grafanaAlertManagerDataSource);
+  //}
 
   if (contextSrv.hasPermission(permissions[permission].external)) {
     const cloudSources = getAlertManagerDataSources().map<AlertManagerDataSource>((ds) => ({

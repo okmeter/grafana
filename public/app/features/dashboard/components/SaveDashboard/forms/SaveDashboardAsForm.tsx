@@ -103,6 +103,7 @@ export const SaveDashboardAsForm = ({ dashboard, isNew, onSubmit, onCancel, onSu
               render={({ field: { ref, ...field } }) => (
                 <FolderPicker
                   {...field}
+                  showRoot={false} // OP_CHANGES.md: disable showRoot in FolderPicker
                   dashboardId={dashboard.id}
                   initialFolderUid={dashboard.meta.folderUid}
                   initialTitle={dashboard.meta.folderTitle}

@@ -82,6 +82,10 @@ func (s *dashboardStorage) SaveDashboard(ctx context.Context, query *SaveDashboa
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
+
 	payload, err := json.Marshal(query)
 	if err != nil {
 		return nil, err
@@ -117,6 +121,10 @@ func (s *dashboardStorage) GetDashboard(ctx context.Context, query *GetDashboard
 		requestContextData = middleware.GetRequestContextData(ctx)
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
+
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
 
 	params := url.Values{}
 	if query.ID != 0 {
@@ -175,6 +183,10 @@ func (s *dashboardStorage) GetDashboardRef(ctx context.Context, query *GetDashbo
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
+
 	params := url.Values{}
 
 	if query.ID != 0 {
@@ -217,6 +229,10 @@ func (s *dashboardStorage) GetDashboardTags(ctx context.Context, query *GetDashb
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
+
 	params := url.Values{}
 	params.Set("org_id", strconv.FormatInt(query.OrgID, 10))
 
@@ -255,6 +271,10 @@ func (s *dashboardStorage) FindDashboards(ctx context.Context, query *FindDashbo
 		requestContextData = middleware.GetRequestContextData(ctx)
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
+
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
 
 	params := url.Values{}
 	if query.Title != "" {
@@ -313,6 +333,10 @@ func (s *dashboardStorage) GetDashboards(ctx context.Context, query *GetDashboar
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
+
 	params := url.Values{}
 	for _, dashboardID := range query.DashboardIDs {
 		params.Add("dashboard_ids[]", strconv.FormatInt(dashboardID, 10))
@@ -351,6 +375,10 @@ func (s *dashboardStorage) GetDashboardsByPluginID(ctx context.Context, query *G
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return nil, ErrEmptyUserSession
+	}
+
 	params := url.Values{}
 	if query.PluginID != "" {
 		params.Set("plugin_id", query.PluginID)
@@ -386,6 +414,10 @@ func (s *dashboardStorage) CountDashboardsInFolder(ctx context.Context, query *C
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
 
+	if userSessionData == "" {
+		return 0, ErrEmptyUserSession
+	}
+
 	params := url.Values{}
 	params.Set("folder_id", strconv.FormatInt(query.FolderID, 10))
 	params.Set("org_id", strconv.FormatInt(query.OrgID, 10))
@@ -418,6 +450,10 @@ func (s *dashboardStorage) Count(ctx context.Context, query *CountDashboardsQuer
 		requestContextData = middleware.GetRequestContextData(ctx)
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
+
+	if userSessionData == "" {
+		return 0, ErrEmptyUserSession
+	}
 
 	params := url.Values{}
 	if query.UserID != 0 {
@@ -453,6 +489,10 @@ func (s *dashboardStorage) DeleteDashboard(ctx context.Context, query *DeleteDas
 		requestContextData = middleware.GetRequestContextData(ctx)
 		userSessionData    = middleware.GetUserSessionData(ctx)
 	)
+
+	if userSessionData == "" {
+		return ErrEmptyUserSession
+	}
 
 	params := url.Values{}
 	if query.ID != 0 {
